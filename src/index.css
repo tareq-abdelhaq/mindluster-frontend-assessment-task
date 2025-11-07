@@ -1,3 +1,18 @@
 body {
     background-color: #f6f6f6;
 }
+
+/* utility classes */
+.h-800 {
+    height: 800px;
+}
+
+/* Hide scrollbar but keep scrolling */
+.hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}

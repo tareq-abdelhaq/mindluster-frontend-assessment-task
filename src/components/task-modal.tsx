@@ -1,15 +1,9 @@
 import { type FormEvent, useMemo } from 'react'
 import { Modal, Form, Button } from 'react-bootstrap'
 
+import { useTaskStore } from '../store/task-store'
+import { type TaskFormData, TaskColumnEnum } from '../services/types'
 import { useCreateTaskMutation, useUpdateTaskMutation } from '../services/mutations'
-import { type Task, type TaskFormData, TaskColumnEnum } from '../services/types'
-
-interface TaskModalProps {
-    show: boolean
-    onHide: () => void
-    task?: Task | null
-    mode: 'add' | 'edit'
-}
 
 const TASK_COLUMN_SELECT_OPTIONS = [
     { value: TaskColumnEnum.BACKLOG, label: 'Backlog' },
@@ -18,8 +12,8 @@ const TASK_COLUMN_SELECT_OPTIONS = [
     { value: TaskColumnEnum.DONE, label: 'Done' },
 ]
 
-export function TaskModal(props: TaskModalProps) {
-    const { show, onHide, task, mode } = props
+export function TaskModal() {
+    const { isModalOpen, editingTask, modalMode, closeModal } = useTaskStore()
 
     const { mutate: createTask, isPending: isCreatingTaskLoading } = useCreateTaskMutation()
     const { mutate: updateTask, isPending: isUpdatingTaskLoading } = useUpdateTaskMutation()
@@ -34,18 +28,18 @@ export function TaskModal(props: TaskModalProps) {
             column: formData.get('column') as TaskColumnEnum,
         }
 
-        if (mode === 'add') {
+        if (modalMode === 'add') {
             createTask(data, {
                 onSuccess: () => {
-                    onHide()
+                    closeModal()
                 },
             })
         } else {
             updateTask(
-                { id: task!.id, data },
+                { id: editingTask!.id, data },
                 {
                     onSuccess: () => {
-                        onHide()
+                        closeModal()
                     },
                 }
             )
@@ -53,7 +47,7 @@ export function TaskModal(props: TaskModalProps) {
     }
 
     const defaultValues = useMemo(() => {
-        if (!task) {
+        if (!editingTask) {
             return {
                 title: '',
                 description: '',
@@ -61,16 +55,16 @@ export function TaskModal(props: TaskModalProps) {
             }
         }
         return {
-            title: task.title,
-            description: task.description,
-            column: task.column,
+            title: editingTask.title,
+            description: editingTask.description,
+            column: editingTask.column,
         }
-    }, [task])
+    }, [editingTask])
 
     return (
-        <Modal show={show} onHide={onHide}>
+        <Modal show={isModalOpen} onHide={closeModal}>
             <Modal.Header closeButton>
-                <Modal.Title>{mode === 'add' ? 'Add New Task' : 'Edit Task'}</Modal.Title>
+                <Modal.Title>{modalMode === 'add' ? 'Add New Task' : 'Edit Task'}</Modal.Title>
             </Modal.Header>
             <Form onSubmit={handleSubmit}>
                 <Modal.Body>
@@ -103,7 +97,7 @@ export function TaskModal(props: TaskModalProps) {
                     <Button
                         variant="secondary"
                         size="sm"
-                        onClick={onHide}
+                        onClick={closeModal}
                         disabled={isCreatingTaskLoading || isUpdatingTaskLoading}
                     >
                         Cancel
@@ -116,7 +110,7 @@ export function TaskModal(props: TaskModalProps) {
                     >
                         {isCreatingTaskLoading || isUpdatingTaskLoading
                             ? 'Saving...'
-                            : mode === 'add'
+                            : modalMode === 'add'
                               ? 'Add Task'
                               : 'Save Changes'}
                     </Button>
