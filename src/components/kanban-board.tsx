@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
 
 import { TaskColumnEnum } from '../services/types'
@@ -16,7 +15,6 @@ const COLUMNS: Array<{ id: TaskColumnEnum; title: string }> = [
 ]
 
 export function KanbanBoard() {
-    const [searchTerm, setSearchTerm] = useState('')
     const openAddModal = useTaskStore((state) => state.openAddModal)
 
     return (
@@ -24,7 +22,7 @@ export function KanbanBoard() {
             <div className="border-bottom mb-4">
                 <Row className="p-4">
                     <Col xs={8} md={6}>
-                        <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+                        <SearchBar />
                     </Col>
                     <Col xs={4} md={6} className="d-flex justify-content-end">
                         <Button variant="primary" onClick={openAddModal}>

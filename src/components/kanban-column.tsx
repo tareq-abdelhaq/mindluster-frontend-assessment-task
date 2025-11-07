@@ -1,6 +1,9 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useMemo } from 'react'
+
 import type { TaskColumnEnum } from '../services/types'
 import { useTasksInfiniteQuery } from '../services/queries'
+import { useTaskStore } from '../store/task-store'
+
 import { TaskCard } from './task-card'
 
 interface KanbanColumnProps {
@@ -13,9 +16,19 @@ export function KanbanColumn(props: KanbanColumnProps) {
     const { title, columnId, showBorder = false } = props
 
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useTasksInfiniteQuery(columnId)
+    const searchTerm = useTaskStore((state) => state.searchTerm)
     const loadMoreRef = useRef<HTMLLIElement>(null)
 
-    const tasks = data?.pages.flat() ?? []
+    const allTasks = data?.pages.flat() ?? []
+
+    const tasks = useMemo(() => {
+        if (!searchTerm.trim()) return allTasks
+        const lowerSearch = searchTerm.toLowerCase()
+        return allTasks.filter(
+            (task) =>
+                task.title.toLowerCase().includes(lowerSearch) || task.description.toLowerCase().includes(lowerSearch)
+        )
+    }, [allTasks, searchTerm])
 
     useEffect(() => {
         if (!loadMoreRef.current || !hasNextPage) return
