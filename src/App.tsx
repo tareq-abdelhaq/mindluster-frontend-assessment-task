@@ -1,8 +1,13 @@
+import { Container } from 'react-bootstrap'
+import { KanbanBoard } from './components/kanban-board'
+
 function App() {
     return (
-        <div>
-            <h1> Mindluster Frontend Assessment Task </h1>
-        </div>
+        <main>
+            <Container className="py-4">
+                <KanbanBoard />
+            </Container>
+        </main>
     )
 }
 
