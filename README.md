@@ -57,3 +57,4 @@ npm run dev
 - [ ] Bulk operations (select multiple tasks)
 - [ ] Task filtering by status, priority, etc.
 - [ ] Responsive mobile optimizations
+- [ ] Working on the JQuery Bonus Task
