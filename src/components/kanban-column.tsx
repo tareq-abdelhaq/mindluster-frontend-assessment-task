@@ -3,6 +3,7 @@ import { useEffect, useRef, useMemo } from 'react'
 import type { TaskColumnEnum } from '../services/types'
 import { useTasksInfiniteQuery } from '../services/queries'
 import { useTaskStore } from '../store/task-store'
+import { useUpdateTaskMutation } from '../services/mutations'
 
 import { TaskCard } from './task-card'
 
@@ -18,6 +19,8 @@ export function KanbanColumn(props: KanbanColumnProps) {
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useTasksInfiniteQuery(columnId)
     const searchTerm = useTaskStore((state) => state.searchTerm)
     const loadMoreRef = useRef<HTMLLIElement>(null)
+
+    const { mutate: updateTask } = useUpdateTaskMutation()
 
     const allTasks = data?.pages.flat() ?? []
 
@@ -47,10 +50,42 @@ export function KanbanColumn(props: KanbanColumnProps) {
         return () => observer.disconnect()
     }, [hasNextPage, isFetchingNextPage, fetchNextPage])
 
+    const handleDragOver = (e: React.DragEvent) => {
+        e.preventDefault()
+        e.dataTransfer.dropEffect = 'move'
+    }
+
+    const handleDrop = (e: React.DragEvent) => {
+        e.preventDefault()
+
+        const taskData = e.dataTransfer.getData('task')
+        if (taskData) {
+            try {
+                const task = JSON.parse(taskData)
+                if (task.column !== columnId) {
+                    updateTask({
+                        id: task.id,
+                        data: {
+                            title: task.title,
+                            description: task.description,
+                            column: columnId,
+                        },
+                    })
+                }
+            } catch (error) {
+                console.error('Failed to parse task data:', error)
+            }
+        }
+    }
+
     return (
         <div className="h-100 d-flex flex-column">
             <h5 className={`p-3 fw-bold ${showBorder ? 'border-end' : ''}`}>{title}</h5>
-            <div className={`flex-grow-1 ${showBorder ? 'border-end' : ''}`} style={{ minHeight: 0 }}>
+            <div
+                className={`min-h-0 flex-grow-1 ${showBorder ? 'border-end' : ''}`}
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+            >
                 {tasks.length === 0 ? (
                     <p className="text-muted text-center small p-3">No tasks</p>
                 ) : (

@@ -22,31 +22,31 @@
       "id": "4",
       "title": " implement forgot password page",
       "description": "Implement forgot password functionality",
-      "column": "done"
+      "column": "review"
     },
     {
       "id": "6711",
       "title": "task #2",
       "description": "this is task #2",
-      "column": "backlog"
+      "column": "review"
     },
     {
       "id": "ab75",
       "title": "task #3",
       "description": "this is task #3",
-      "column": "backlog"
+      "column": "in-progress"
     },
     {
       "id": "40f7",
       "title": "task #4",
       "description": "this is task #4",
-      "column": "backlog"
+      "column": "done"
     },
     {
       "id": "23db",
       "title": "task #5",
       "description": "This is task #5",
-      "column": "backlog"
+      "column": "in-progress"
     },
     {
       "id": "7add",
