@@ -54,6 +54,7 @@ npm run dev
 - [ ] User authentication
 - [ ] Drag and drop animations
 - [ ] Task reordering within the same column to enable drag/drop withing the same column
+- [ ] Use Optimistic approach to update the task column when the drop happen since it currently takes time to reflect the drag/drop of a task into a new column
 - [ ] Bulk operations (select multiple tasks)
 - [ ] Task filtering by status, priority, etc.
 - [ ] Responsive mobile optimizations
