@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import type { Task, TaskFormData } from './types'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+const IS_PRODUCTION = import.meta.env.VITE_ENV === 'production'
 
 export function useCreateTaskMutation() {
     const queryClient = useQueryClient()
@@ -29,7 +30,7 @@ export function useUpdateTaskMutation() {
     return useMutation<Task, Error, { id: number; data: TaskFormData }>({
         mutationFn: async ({ id, data }) => {
             const response = await fetch(`${API_BASE_URL}/tasks/${id}`, {
-                method: 'PATCH',
+                method: IS_PRODUCTION ? 'PUT' : 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),
             })
