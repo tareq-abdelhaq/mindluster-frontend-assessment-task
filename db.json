@@ -3,92 +3,122 @@
     {
       "id": "1",
       "title": "Design homepage",
-      "description": "Include hero section.",
+      "description": "Create a modern homepage with hero section and call-to-action buttons",
       "column": "backlog"
     },
     {
       "id": "2",
-      "title": " develop login page",
-      "description": "Implement login functionality",
-      "column": "in-progress"
+      "title": "Implement user authentication",
+      "description": "Add login and signup functionality with JWT tokens",
+      "column": "backlog"
     },
     {
       "id": "3",
-      "title": " implement signup page",
-      "description": "Implement signup functionality",
-      "column": "review"
+      "title": "Create dashboard layout",
+      "description": "Design and implement the main dashboard interface",
+      "column": "in-progress"
     },
     {
       "id": "4",
-      "title": " implement forgot password page",
-      "description": "Implement forgot password functionality",
+      "title": "Add dark mode support",
+      "description": "Implement theme switching between light and dark modes",
       "column": "review"
     },
     {
-      "id": "6711",
-      "title": "task #2",
-      "description": "this is task #2",
-      "column": "review"
+      "id": "5",
+      "title": "Build user profile page",
+      "description": "Create a page where users can view and edit their profile information",
+      "column": "backlog"
     },
     {
-      "id": "ab75",
-      "title": "task #3",
-      "description": "this is task #3",
+      "id": "6",
+      "title": "Implement search functionality",
+      "description": "Add global search feature to find users, posts, and content",
+      "column": "backlog"
+    },
+    {
+      "id": "7",
+      "title": "Create notification system",
+      "description": "Build a real-time notification system for user activities",
+      "column": "backlog"
+    },
+    {
+      "id": "8",
+      "title": "Add data export feature",
+      "description": "Allow users to export their data in CSV and JSON formats",
+      "column": "backlog"
+    },
+    {
+      "id": "9",
+      "title": "Develop login page",
+      "description": "Implement login functionality with form validation",
       "column": "in-progress"
     },
     {
-      "id": "40f7",
-      "title": "task #4",
-      "description": "this is task #4",
+      "id": "10",
+      "title": "Build API integration",
+      "description": "Connect frontend to backend REST API endpoints",
+      "column": "in-progress"
+    },
+    {
+      "id": "11",
+      "title": "Create task management UI",
+      "description": "Design and implement the task list and detail views",
+      "column": "in-progress"
+    },
+    {
+      "id": "12",
+      "title": "Implement form validation",
+      "description": "Add client-side validation for all user input forms",
+      "column": "in-progress"
+    },
+    {
+      "id": "13",
+      "title": "Implement signup page",
+      "description": "Create user registration form with email verification",
+      "column": "review"
+    },
+    {
+      "id": "14",
+      "title": "Add error handling",
+      "description": "Implement comprehensive error handling and user feedback",
+      "column": "review"
+    },
+    {
+      "id": "15",
+      "title": "Create responsive navigation",
+      "description": "Build mobile-friendly navigation menu with hamburger icon",
       "column": "done"
     },
     {
-      "id": "23db",
-      "title": "task #5",
-      "description": "This is task #5",
-      "column": "in-progress"
+      "id": "16",
+      "title": "Implement forgot password page",
+      "description": "Add password reset functionality with email link",
+      "column": "review"
     },
     {
-      "id": "7add",
-      "title": "task #6",
-      "description": "This is task #6",
-      "column": "backlog"
+      "id": "17",
+      "title": "Setup project structure",
+      "description": "Initialize project with React, TypeScript, and build tools",
+      "column": "done"
     },
     {
-      "id": "7885",
-      "title": "task #7 ",
-      "description": "this is task #7\n",
-      "column": "backlog"
+      "id": "18",
+      "title": "Configure development environment",
+      "description": "Set up ESLint, Prettier, and development scripts",
+      "column": "done"
     },
     {
-      "id": "6cfb",
-      "title": "task #8",
-      "description": "This is task #8",
-      "column": "backlog"
+      "id": "19",
+      "title": "Create component library",
+      "description": "Build reusable UI components (buttons, inputs, cards)",
+      "column": "done"
     },
     {
-      "id": "db5f",
-      "title": "task #9",
-      "description": "This is task #9",
-      "column": "backlog"
-    },
-    {
-      "id": "4715",
-      "title": "task #10",
-      "description": "This is task #10\n",
-      "column": "backlog"
-    },
-    {
-      "id": "e01e",
-      "title": "Task #11",
-      "description": "This is task #11",
-      "column": "backlog"
-    },
-    {
-      "id": "10ac",
-      "title": "task #12",
-      "description": "This is task #12",
-      "column": "backlog"
+      "id": "20",
+      "title": "Setup version control",
+      "description": "Initialize Git repository and configure .gitignore",
+      "column": "done"
     }
   ]
 }
